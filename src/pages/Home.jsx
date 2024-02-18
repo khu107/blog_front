@@ -1,3 +1,9 @@
+import HomeTab from "../components/hometab";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <HomeTab />
+    </div>
+  );
 }
