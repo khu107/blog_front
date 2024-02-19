@@ -1,18 +1,15 @@
 import styled from "styled-components";
 import StyledInput from "../components/input";
 import StyledButton from "../components/button";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { Editor } from "@toast-ui/react-editor";
 
 export default function Write() {
-  const [form, setForm] = useState("");
-
   return (
     <WriteCon>
       <Left>
         <Form>
-          <div style={{ padding: "64px" }}>
+          <div style={{ padding: "44px" }}>
             <StyledInput
               type="text"
               size="2.5rem"
@@ -25,11 +22,18 @@ export default function Write() {
               width="200px"
               placeholder="태그를 입력하세요"
             />
-            <ReactQuill
-              placeholder="당신의 이야기를 적어보세요..."
-              theme="snow"
-              value={form}
-              onChange={setForm}
+            <Editor
+              height="71vh"
+              previewStyle="vertical"
+              hideModeSwitch={true}
+              toolbarItems={[
+                // 툴바 옵션 설정
+                ["heading", "bold", "italic", "strike"],
+                ["hr", "quote"],
+                ["ul", "ol", "task", "indent", "outdent"],
+                ["table", "image", "link"],
+                ["code", "codeblock"],
+              ]}
             />
           </div>
           <LeftBottom>
@@ -45,7 +49,6 @@ export default function Write() {
           </LeftBottom>
         </Form>
       </Left>
-      <Right dangerouslySetInnerHTML={{ __html: form }} />
     </WriteCon>
   );
 }
@@ -53,24 +56,13 @@ export default function Write() {
 const WriteCon = styled.div`
   height: 100vh;
   display: flex;
+  width: 100%;
 `;
 const Left = styled.div`
   position: relative;
-  width: 55%;
+  width: 100%;
+`;
 
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-  }
-`;
-const Right = styled.div`
-  overflow-y: auto;
-  width: 45%;
-  padding: 48px;
-  background-color: #e9ecef;
-  @media screen and (max-width: 1024px) {
-    display: none;
-  }
-`;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
