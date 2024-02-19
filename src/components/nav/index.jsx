@@ -3,6 +3,8 @@ import Button from "../button";
 import Searchsvg from "../../assets/icons/search.svg";
 
 export default function index() {
+  if (window.location.pathname === "/write") return null;
+
   return (
     <Nav>
       <Logo>MIT-10</Logo>
